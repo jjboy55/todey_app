@@ -12,8 +12,8 @@ This is a basic Todo app designed to demonstrate fundamental concepts of state m
 
 ## Technologies Used 💻
 
-- Dart
-- Flutter
+- Dart 🎯
+- Flutter 🕊️
 
 ## State Management 🔄
 
