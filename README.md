@@ -28,7 +28,7 @@ The design of this Todo app follows a minimalistic approach to keep things clean
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/flutter-todo-app.git
+   git clone https://github.com/jjboy55/flutter-todo-app.git
 
 ## Usage 📋
 
