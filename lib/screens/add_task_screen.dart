@@ -27,7 +27,10 @@ class AddTaskScreen extends StatelessWidget {
               height: 15,
             ),
             TextField(
-              decoration: InputDecoration(border: UnderlineInputBorder()),
+              autofocus: true,
+              decoration: InputDecoration(
+                  focusColor: Colors.lightBlueAccent,
+                  border: UnderlineInputBorder()),
             ),
             SizedBox(
               height: 15,
