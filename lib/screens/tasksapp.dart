@@ -1,29 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
+import 'package:todey_app/models/task_data.dart';
 import 'package:todey_app/screens/add_task_screen.dart';
-import '../models/task.dart';
 import '../widgets/task_list.dart';
- 
-class TasksScreen extends StatefulWidget {
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
+import 'package:provider/provider.dart';
 
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy Food'),
-    Task(name: 'Buy Water'),
-    Task(name: 'Buy Tea'),
-  ];
-  TextEditingController controller = TextEditingController();
-  late String writtenText;
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,18 +14,7 @@ class _TasksScreenState extends State<TasksScreen> {
           //Show bottom Sheet
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTaskScreen(
-              writtenText: controller.text,
-              textController: controller,
-              onPressed: () {
-                writtenText = controller.text;
-                setState(() {
-                  tasks.add(Task(name: writtenText));
-                });
-                Navigator.pop(context);
-                controller.clear();
-              },
-            ),
+            builder: (context) => AddTaskScreen(),
           );
         },
         backgroundColor: Colors.lightBlueAccent,
@@ -81,9 +52,11 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontSize: 50),
                 ),
                 SizedBox(height: 10),
-                Text(
-                  '${tasks.length} Tasks',
-                  style: TextStyle(color: Colors.white70, fontSize: 18),
+                Consumer<TaskData>(
+                  builder: (BuildContext context, value, Widget? child) => Text(
+                    '${value.taskListLength} Tasks',
+                    style: TextStyle(color: Colors.white70, fontSize: 18),
+                  ),
                 ),
                 SizedBox(
                   height: 30,
@@ -102,9 +75,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
               ),
-              child: TaskList(
-                tasks: tasks,
-              ),
+              child: TaskList(),
             ),
           ),
         ],
